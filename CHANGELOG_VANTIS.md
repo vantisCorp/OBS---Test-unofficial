@@ -5,6 +5,20 @@ All notable changes to this fork will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [32.0.4-vantis.5] - 2026-03-08
+
+### Added
+- **Faza 4 - SIMD Audio Mixing**
+  - SIMD-optimized audio mixing functions (SSE/AVX/NEON)
+  - 4x-8x faster audio mixing on supported platforms
+  - Unit tests for all mixing functions
+- **Cleanup**: Removed old patch branches (24.0.4-patch, 25.0.8-patch)
+- **Docs**: Added Phase 4 development plan (FAZA4_PLAN.md)
+
+### Changed
+- Updated CI/CD workflow permissions for private repo compatibility
+- Changed ubuntu-24.04 to ubuntu-latest for better runner availability
+
 ## [32.0.4-vantis.3] - 2026-03-08
 
 ### Added
