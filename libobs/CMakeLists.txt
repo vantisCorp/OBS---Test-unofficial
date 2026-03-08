@@ -82,6 +82,8 @@ target_sources(
   PRIVATE
     util/array-serializer.c
     util/array-serializer.h
+    util/audio-mixing.c
+    util/audio-mixing.h
     util/base.c
     util/base.h
     util/bitstream.c
