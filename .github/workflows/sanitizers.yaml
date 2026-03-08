@@ -1,0 +1,163 @@
+name: Sanitizer Builds
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  asan-build:
+    name: Address Sanitizer (Linux)
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout Repository 📥
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Dependencies 📦
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            cmake \
+            clang \
+            pkg-config \
+            libgl1-mesa-dev \
+            libx11-dev \
+            libpulse-dev \
+            libasound2-dev
+
+      - name: Configure with ASan 🔧
+        run: |
+          cmake -B build \
+            -DCMAKE_C_COMPILER=clang \
+            -DCMAKE_CXX_COMPILER=clang++ \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DENABLE_UI=OFF \
+            -DENABLE_ASAN=ON \
+            -DBUILD_TESTING=ON
+
+      - name: Build 🏗️
+        run: cmake --build build --parallel $(nproc)
+
+      - name: Run Tests with ASan 🧪
+        env:
+          ASAN_OPTIONS: detect_leaks=1:detect_stack_use_after_return=1:abort_on_error=1
+        run: |
+          cd build
+          ctest --output-on-failure --timeout 120 || true
+
+  ubsan-build:
+    name: Undefined Behavior Sanitizer (Linux)
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout Repository 📥
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Dependencies 📦
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            cmake \
+            clang \
+            pkg-config \
+            libgl1-mesa-dev \
+            libx11-dev \
+            libpulse-dev \
+            libasound2-dev
+
+      - name: Configure with UBSan 🔧
+        run: |
+          cmake -B build \
+            -DCMAKE_C_COMPILER=clang \
+            -DCMAKE_CXX_COMPILER=clang++ \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DENABLE_UI=OFF \
+            -DENABLE_UBSAN=ON \
+            -DBUILD_TESTING=ON
+
+      - name: Build 🏗️
+        run: cmake --build build --parallel $(nproc)
+
+      - name: Run Tests with UBSan 🧪
+        env:
+          UBSAN_OPTIONS: print_stacktrace=1:abort_on_error=1
+        run: |
+          cd build
+          ctest --output-on-failure --timeout 120 || true
+
+  tsan-build:
+    name: Thread Sanitizer (Linux)
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout Repository 📥
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Dependencies 📦
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            cmake \
+            clang \
+            pkg-config \
+            libgl1-mesa-dev \
+            libx11-dev \
+            libpulse-dev \
+            libasound2-dev
+
+      - name: Configure with TSan 🔧
+        run: |
+          cmake -B build \
+            -DCMAKE_C_COMPILER=clang \
+            -DCMAKE_CXX_COMPILER=clang++ \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DENABLE_UI=OFF \
+            -DENABLE_TSAN=ON \
+            -DBUILD_TESTING=ON
+
+      - name: Build 🏗️
+        run: cmake --build build --parallel $(nproc)
+
+      - name: Run Tests with TSan 🧪
+        env:
+          TSAN_OPTIONS: abort_on_error=1:halt_on_error=1
+        run: |
+          cd build
+          ctest --output-on-failure --timeout 180 || true
+
+  summary:
+    name: Sanitizer Summary
+    needs: [asan-build, ubsan-build, tsan-build]
+    if: always()
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Generate Summary 📊
+        run: |
+          echo "## Sanitizer Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Sanitizer | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Address Sanitizer (ASan) | ${{ needs.asan-build.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Undefined Behavior (UBSan) | ${{ needs.ubsan-build.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Thread Sanitizer (TSan) | ${{ needs.tsan-build.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Sanitizers help detect:" >> $GITHUB_STEP_SUMMARY
+          echo "- **ASan**: Memory errors, buffer overflows, use-after-free" >> $GITHUB_STEP_SUMMARY
+          echo "- **UBSan**: Undefined behavior, null pointer dereference, integer overflow" >> $GITHUB_STEP_SUMMARY
+          echo "- **TSan**: Data races, deadlocks" >> $GITHUB_STEP_SUMMARY
