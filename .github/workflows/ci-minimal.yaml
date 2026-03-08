@@ -1,0 +1,87 @@
+# Minimal CI/CD Workflow for vantisCorp/OBS
+# 
+# NOTE: For private repositories, GitHub Actions requires:
+# - GitHub Pro or GitHub Team plan for user accounts
+# - GitHub Enterprise for organizations
+#
+# If you're seeing failures with runner_id: 0, this indicates
+# billing/permission issues. Options to fix:
+# 1. Upgrade to GitHub Pro/Team
+# 2. Make the repository public (free Actions for public repos)
+# 3. Use self-hosted runners
+
+name: CI Minimal
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # This job tests if Actions are available
+  test-runner:
+    name: Test Runner Availability
+    runs-on: ubuntu-latest
+    if: github.event.repository.private != true
+    
+    steps:
+      - name: Check Runner
+        run: |
+          echo "✅ Runner is available"
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+
+  # Build check - only runs on public repos or with paid plan
+  build-linux:
+    name: Build Linux
+    runs-on: ubuntu-latest
+    if: github.event.repository.private != true
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake pkg-config \
+            libgl1-mesa-dev libx11-dev libpulse-dev libasound2-dev
+        
+      - name: Configure
+        run: cmake -B build -DENABLE_UI=OFF -DBUILD_TESTING=ON
+        
+      - name: Build
+        run: cmake --build build --parallel $(nproc)
+
+  # This job always runs and provides status
+  status:
+    name: CI Status
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: Report Status
+        run: |
+          echo "## CI Status Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ github.event.repository.private }}" = "true" ]; then
+            echo "⚠️ **Private Repository Detected**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "GitHub Actions for private repositories requires:" >> $GITHUB_STEP_SUMMARY
+            echo "- GitHub Pro or GitHub Team plan" >> $GITHUB_STEP_SUMMARY
+            echo "- Or GitHub Enterprise" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Options:" >> $GITHUB_STEP_SUMMARY
+            echo "1. Upgrade your GitHub plan" >> $GITHUB_STEP_SUMMARY
+            echo "2. Make the repository public" >> $GITHUB_STEP_SUMMARY
+            echo "3. Use self-hosted runners" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ Public repository - Actions should work" >> $GITHUB_STEP_SUMMARY
+          fi
