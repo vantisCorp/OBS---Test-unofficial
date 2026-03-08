@@ -40,7 +40,8 @@ jobs:
             pkg-config \
             libgl1-mesa-dev \
             libx11-dev \
-            libbenchmark-dev
+            libbenchmark-dev \
+            libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev
 
       - name: Configure with Benchmarks 🔧
         run: |

@@ -36,7 +36,8 @@ jobs:
             libgl1-mesa-dev \
             libx11-dev \
             libpulse-dev \
-            libasound2-dev
+            libasound2-dev \
+            libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev
 
       - name: Configure with ASan 🔧
         run: |
@@ -82,7 +83,8 @@ jobs:
             libgl1-mesa-dev \
             libx11-dev \
             libpulse-dev \
-            libasound2-dev
+            libasound2-dev \
+            libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev
 
       - name: Configure with UBSan 🔧
         run: |
@@ -128,7 +130,8 @@ jobs:
             libgl1-mesa-dev \
             libx11-dev \
             libpulse-dev \
-            libasound2-dev
+            libasound2-dev \
+            libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev
 
       - name: Configure with TSan 🔧
         run: |

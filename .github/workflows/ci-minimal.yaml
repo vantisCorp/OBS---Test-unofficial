@@ -55,7 +55,8 @@ jobs:
           sudo apt-get install -y build-essential cmake pkg-config \
             extra-cmake-modules \
             libsimde-dev \
-            libgl1-mesa-dev libx11-dev libpulse-dev libasound2-dev
+            libgl1-mesa-dev libx11-dev libpulse-dev libasound2-dev \
+            libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev
         
       - name: Configure
         run: cmake -B build -DENABLE_UI=OFF -DBUILD_TESTING=ON
