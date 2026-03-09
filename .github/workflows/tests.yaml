@@ -83,6 +83,7 @@ jobs:
             libx264-dev \
             libxcb1-dev \
             libxcb-xinput-dev \
+            libxkbcommon-dev \
             libxcb-composite0-dev \
             libdrm-dev \
             libglib2.0-dev \
