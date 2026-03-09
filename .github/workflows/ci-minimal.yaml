@@ -105,7 +105,7 @@ jobs:
             libclang-dev
         
       - name: Configure
-        run: cmake -B build -DENABLE_UI=OFF -DBUILD_TESTING=ON
+        run: cmake -B build -DENABLE_UI=OFF -DBUILD_TESTING=ON -DENABLE_AJA=OFF -DENABLE_DECKLINK=OFF
         
       - name: Build
         run: cmake --build build --parallel $(nproc)
