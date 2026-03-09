@@ -94,7 +94,7 @@ jobs:
       - name: Install SIMDe 📦
         if: runner.os == 'Linux'
         run: |
-          sudo apt-get install -y libsimde-dev
+          sudo apt-get install -y libsimde-dev uthash-dev
 
       - name: Configure CMake 🔧
         run: |
