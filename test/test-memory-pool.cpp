@@ -31,7 +31,7 @@ typedef unsigned char uint8_t;
 typedef unsigned long size_t;
 
 /* Inline the memory pool implementation for testing */
-#include "memory-pool-fixed.h"
+#include "memory-pool.h"
 
 /* Test counters */
 static int tests_passed = 0;
