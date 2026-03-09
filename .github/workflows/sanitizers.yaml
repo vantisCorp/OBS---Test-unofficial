@@ -37,6 +37,7 @@ jobs:
             pkg-config \
             libgl1-mesa-dev \
             libx11-dev \
+            libx11-xcb-dev \
             libpulse-dev \
             libasound2-dev \
             libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev
@@ -86,6 +87,7 @@ jobs:
             pkg-config \
             libgl1-mesa-dev \
             libx11-dev \
+            libx11-xcb-dev \
             libpulse-dev \
             libasound2-dev \
             libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev
@@ -135,6 +137,7 @@ jobs:
             pkg-config \
             libgl1-mesa-dev \
             libx11-dev \
+            libx11-xcb-dev \
             libpulse-dev \
             libasound2-dev \
             libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev

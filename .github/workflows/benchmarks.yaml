@@ -42,6 +42,7 @@ jobs:
             pkg-config \
             libgl1-mesa-dev \
             libx11-dev \
+            libx11-xcb-dev \
             libbenchmark-dev \
             libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev
 
