@@ -41,13 +41,49 @@ jobs:
             libjansson-dev \
             pkg-config \
             libgl1-mesa-dev \
+            libglu1-mesa-dev \
             libx11-dev \
             libx11-xcb-dev \
+            libxcb-dri3-dev \
+            libxcb-randr0-dev \
+            libxcb-shm0-dev \
+            libxcb-xfixes0-dev \
+            libxcb-xinerama0-dev \
             libxcb-xinput-dev \
+            libxcomposite-dev \
+            libxinerama-dev \
+            libxrandr-dev \
+            libxi-dev \
+            libpulse-dev \
+            libasound2-dev \
+            libjack-dev \
+            libavcodec-dev \
+            libavdevice-dev \
+            libavfilter-dev \
+            libavformat-dev \
+            libavutil-dev \
+            libswresample-dev \
+            libswscale-dev \
+            libcurl4-openssl-dev \
+            libfontconfig1-dev \
+            libfreetype6-dev \
+            libluajit-5.1-dev \
+            libpci-dev \
+            libpipewire-0.3-dev \
+            librist-dev \
+            libsrt-openssl-dev \
+            libspeexdsp-dev \
+            libudev-dev \
+            libv4l-dev \
+            libvlc-dev \
             libwayland-dev \
             libxkbcommon-dev \
-            libbenchmark-dev \
-            libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev
+            libx264-dev \
+            libxcb1-dev \
+            libdrm-dev \
+            libglib2.0-dev \
+            libclang-dev \
+            libbenchmark-dev
 
       - name: Configure with Benchmarks 🔧
         run: |
