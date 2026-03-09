@@ -86,7 +86,7 @@ jobs:
             -DCMAKE_C_COMPILER=clang \
             -DCMAKE_CXX_COMPILER=clang++ \
             -DCMAKE_BUILD_TYPE=Debug \
-            -DENABLE_UI=OFF \
+            -DENABLE_UI=OFF -DENABLE_FRONTEND=OFF \
             -DENABLE_ASAN=ON \
             -DBUILD_TESTING=ON \
             -DENABLE_AJA=OFF \
@@ -180,7 +180,7 @@ jobs:
             -DCMAKE_C_COMPILER=clang \
             -DCMAKE_CXX_COMPILER=clang++ \
             -DCMAKE_BUILD_TYPE=Debug \
-            -DENABLE_UI=OFF \
+            -DENABLE_UI=OFF -DENABLE_FRONTEND=OFF \
             -DENABLE_UBSAN=ON \
             -DBUILD_TESTING=ON \
             -DENABLE_AJA=OFF \
@@ -274,7 +274,7 @@ jobs:
             -DCMAKE_C_COMPILER=clang \
             -DCMAKE_CXX_COMPILER=clang++ \
             -DCMAKE_BUILD_TYPE=Debug \
-            -DENABLE_UI=OFF \
+            -DENABLE_UI=OFF -DENABLE_FRONTEND=OFF \
             -DENABLE_TSAN=ON \
             -DBUILD_TESTING=ON \
             -DENABLE_AJA=OFF \

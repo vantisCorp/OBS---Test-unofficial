@@ -91,7 +91,7 @@ jobs:
         run: |
           cmake -B build \
             -DCMAKE_BUILD_TYPE=Release \
-            -DENABLE_UI=OFF \
+            -DENABLE_UI=OFF -DENABLE_FRONTEND=OFF \
             -DENABLE_BENCHMARKS=ON \
             -DBUILD_TESTING=OFF \
             -DENABLE_AJA=OFF \

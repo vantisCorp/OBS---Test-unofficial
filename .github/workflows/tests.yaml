@@ -101,7 +101,7 @@ jobs:
           cmake -B build \
             -G "${{ matrix.cmake_generator }}" \
             -DCMAKE_BUILD_TYPE=Debug \
-            -DENABLE_UI=OFF \
+            -DENABLE_UI=OFF -DENABLE_FRONTEND=OFF \
             -DENABLE_SCRIPTING=ON \
             -DBUILD_TESTING=ON \
             -DENABLE_AJA=OFF \
@@ -179,7 +179,7 @@ jobs:
             -G "Visual Studio 17 2022" `
             -A x64 `
             -DCMAKE_BUILD_TYPE=Debug `
-            -DENABLE_UI=OFF `
+            -DENABLE_UI=OFF -DENABLE_FRONTEND=OFF `
             -DBUILD_TESTING=ON
 
       - name: Build 🏗️
