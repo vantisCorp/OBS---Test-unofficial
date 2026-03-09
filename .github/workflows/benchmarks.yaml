@@ -95,7 +95,9 @@ jobs:
             -DENABLE_BENCHMARKS=ON \
             -DBUILD_TESTING=OFF \
             -DENABLE_AJA=OFF \
-            -DENABLE_DECKLINK=OFF
+            -DENABLE_DECKLINK=OFF \
+            -DENABLE_NVENC=OFF \
+            -DENABLE_QSV11=OFF
 
       - name: Build 🏗️
         run: cmake --build build --parallel $(nproc)

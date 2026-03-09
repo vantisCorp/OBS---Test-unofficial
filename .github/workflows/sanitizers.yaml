@@ -90,7 +90,9 @@ jobs:
             -DENABLE_ASAN=ON \
             -DBUILD_TESTING=ON \
             -DENABLE_AJA=OFF \
-            -DENABLE_DECKLINK=OFF
+            -DENABLE_DECKLINK=OFF \
+            -DENABLE_NVENC=OFF \
+            -DENABLE_QSV11=OFF
 
       - name: Build 🏗️
         run: cmake --build build --parallel $(nproc)
@@ -180,7 +182,9 @@ jobs:
             -DENABLE_UBSAN=ON \
             -DBUILD_TESTING=ON \
             -DENABLE_AJA=OFF \
-            -DENABLE_DECKLINK=OFF
+            -DENABLE_DECKLINK=OFF \
+            -DENABLE_NVENC=OFF \
+            -DENABLE_QSV11=OFF
 
       - name: Build 🏗️
         run: cmake --build build --parallel $(nproc)
@@ -270,7 +274,9 @@ jobs:
             -DENABLE_TSAN=ON \
             -DBUILD_TESTING=ON \
             -DENABLE_AJA=OFF \
-            -DENABLE_DECKLINK=OFF
+            -DENABLE_DECKLINK=OFF \
+            -DENABLE_NVENC=OFF \
+            -DENABLE_QSV11=OFF
 
       - name: Build 🏗️
         run: cmake --build build --parallel $(nproc)
