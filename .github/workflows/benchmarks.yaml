@@ -45,6 +45,7 @@ jobs:
             libx11-xcb-dev \
             libxcb-xinput-dev \
             libwayland-dev \
+            libxkbcommon-dev \
             libbenchmark-dev \
             libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev
 
