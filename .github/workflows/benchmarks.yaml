@@ -50,6 +50,7 @@ jobs:
             libxcb-xfixes0-dev \
             libxcb-xinerama0-dev \
             libxcb-xinput-dev \
+            libxcb-composite0-dev \
             libxcomposite-dev \
             libxinerama-dev \
             libxrandr-dev \
