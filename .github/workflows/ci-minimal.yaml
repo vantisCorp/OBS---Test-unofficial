@@ -57,7 +57,9 @@ jobs:
             libsimde-dev \
             uthash-dev \
             libjansson-dev \
-            libgl1-mesa-dev libx11-dev libx11-xcb-dev libpulse-dev libasound2-dev \
+            libgl1-mesa-dev libx11-dev libx11-xcb-dev libxcb-xinput-dev \
+            libwayland-dev \
+            libpulse-dev libasound2-dev \
             libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libswresample-dev
         
       - name: Configure
