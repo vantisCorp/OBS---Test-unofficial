@@ -5,25 +5,38 @@ All notable changes to this fork will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - fix/add-extra-cmake-modules branch
+## [32.0.4-vantis.12] - 2026-03-10
 
 ### Fixed
+- **CI/CD Pipeline**: All 35/35 checks now passing
 - **CodeQL Workflow**: Added all missing build dependencies and CMake flags
 - **clang-format**: Formatted all 18 modified files to pass CI checks
 - **Tests Workflow**: Added `libxkbcommon-dev`, `uthash-dev`, `libjansson-dev` dependencies
 - **Benchmark Build**: Fixed compilation errors (const char*, unused variables, missing includes)
 - **CMakeLists.txt**: Added benchmark subdirectory for build inclusion
 - **End-of-file**: Added missing newlines to 20+ source/header files
+- **Flatpak Build**: Updated metainfo XML URLs for fork, made Flathub validation non-fatal
 
 ### Changed
 - **README.rst**: Fixed repository URLs and added CI badges
 - **CHANGELOG_VANTIS.md**: Updated with missing version entries
 - **CodeQL workflow**: Full dependency parity with tests workflow
+- **docs/CI-CD-REQUIREMENTS.md**: Updated for public repository status
 
 ### Added
 - **SECURITY.md**: Security policy and vulnerability reporting guidelines
 - **CODEOWNERS**: Code ownership definitions for review routing
 - **.github/dependabot.yml**: Automated dependency update configuration
+- **docs/REPOSITORY_AUDIT_REPORT.md**: Comprehensive A-to-Z repository audit report
+
+### Security
+- Branch protection enabled on master (require PR reviews + status checks)
+- Secret scanning and push protection enabled
+- Dependabot security updates enabled
+- Vulnerability alerts enabled
+
+### Removed
+- **memory-pool-fixed.h**: Removed duplicate file (identical to memory-pool.h)
 
 ## [32.0.4-vantis.11] - 2026-03-08
 
